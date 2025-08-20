@@ -14,20 +14,10 @@ struct Mixer: View {
     @State private var isAddingTwoTrack: Bool = false
     @State private var currentNumberAudio: Int = 0
     @State private var showSelectSourceSheet: Bool = false
+    @State private var isPlaying: Bool = false
     @State private var selectedSource: SourceType? = nil
     @State private var addedAudios: [AddedAudio] = []
-
-    enum SourceType: Identifiable {
-        case record, playMusic
-        var id: Int { self.hashValue }
-    }
-    
-    struct AddedAudio: Identifiable, Equatable {
-        let id = UUID()
-        let fileURL: URL
-        let displayName: String
-        let source: SourceType
-    }
+    @StateObject private var vm = MixerViewModel()
     
     var body: some View {
         VStack {
@@ -83,9 +73,19 @@ struct Mixer: View {
             Spacer()
             
             if isAddingTwoTrack {
-                Button(action: {
-                    // TODO: Thực hiện mix các file trong addedAudios
-                }) {
+                Button {
+                    if isPlaying {
+                        vm.stop()
+                        isPlaying = false
+                    } else {
+                        if vm.loadTrack(addedAudios: addedAudios) {
+                            vm.playAll()
+                            isPlaying = true
+                        } else {
+                            print("Failed to load tracks")
+                        }
+                    }
+                } label: {
                     Text("Mix now")
                         .font(Font.title2)
                         .fontWeight(.semibold)

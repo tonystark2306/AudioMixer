@@ -28,6 +28,8 @@
 		2CFBDFB22E531C440081A824 /* RecordAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBDFB12E531C440081A824 /* RecordAudioView.swift */; };
 		2CFBDFC32E5330910081A824 /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBDFC22E5330910081A824 /* AudioCell.swift */; };
 		2CFBDFC52E533C1E0081A824 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFBDFC42E533C1E0081A824 /* PlayerView.swift */; };
+		84F2EDFE2E56101F00384863 /* AddedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2EDFD2E56101F00384863 /* AddedAudio.swift */; };
+		84F2EE002E56119900384863 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F2EDFF2E56119900384863 /* Recording.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		2CFBDFB12E531C440081A824 /* RecordAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAudioView.swift; sourceTree = "<group>"; };
 		2CFBDFC22E5330910081A824 /* AudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
 		2CFBDFC42E533C1E0081A824 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		84F2EDFD2E56101F00384863 /* AddedAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedAudio.swift; sourceTree = "<group>"; };
+		84F2EDFF2E56119900384863 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		BE4D25D3CC1D23B04E887CE9 /* Pods-AudioMixer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixer.release.xcconfig"; path = "Target Support Files/Pods-AudioMixer/Pods-AudioMixer.release.xcconfig"; sourceTree = "<group>"; };
 		F1AB4BFE659EC8BD5B83BA6B /* Pods_AudioMixer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioMixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +122,8 @@
 		2C98B7D92E4DEB61004312F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84F2EDFF2E56119900384863 /* Recording.swift */,
+				84F2EDFD2E56101F00384863 /* AddedAudio.swift */,
 				2C8D7BF92E54B5B50046B8C4 /* AudioManager.swift */,
 			);
 			path = Model;
@@ -357,10 +363,12 @@
 				2CFBDFAF2E53162B0081A824 /* Mixer.swift in Sources */,
 				2C98B7D52E4DE8CE004312F3 /* AudioMixerApp.swift in Sources */,
 				2CCE35892E55850400D5748D /* PlayMusicSelectionView.swift in Sources */,
+				84F2EE002E56119900384863 /* Recording.swift in Sources */,
 				2CFBDFAB2E5316180081A824 /* Record.swift in Sources */,
 				2C8549262E54706600CABF5E /* RecordAudioViewModel.swift in Sources */,
 				2CCE357E2E55830200D5748D /* PlayMusicViewModel.swift in Sources */,
 				2C71B3342E55C51C0031AB26 /* MixerViewModel.swift in Sources */,
+				84F2EDFE2E56101F00384863 /* AddedAudio.swift in Sources */,
 				2CCE357C2E5582AF00D5748D /* RecordSelectionView.swift in Sources */,
 				2CFBDFA82E5315F50081A824 /* Root.swift in Sources */,
 				2C8D7BFA2E54B5B50046B8C4 /* AudioManager.swift in Sources */,
@@ -501,7 +509,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WT5PJGD97N;
+				DEVELOPMENT_TEAM = 8Y97Y4PU62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Audio Mixer";
@@ -517,7 +525,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.quanganh.AudioMixer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ngoccha.AudioMixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -537,7 +545,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WT5PJGD97N;
+				DEVELOPMENT_TEAM = 8Y97Y4PU62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Audio Mixer";
@@ -553,7 +561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.quanganh.AudioMixer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ngoccha.AudioMixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

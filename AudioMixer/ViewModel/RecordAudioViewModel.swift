@@ -9,12 +9,6 @@ import Foundation
 import Combine
 import AVFoundation
 
-struct Recording: Identifiable {
-    let id = UUID()
-    let fileURL: URL
-    let createdAt: Date
-}
-
 class RecordAudioViewModel: NSObject, ObservableObject {
     @Published var isRecording = false
     @Published var timeRecorded: TimeInterval = 0
