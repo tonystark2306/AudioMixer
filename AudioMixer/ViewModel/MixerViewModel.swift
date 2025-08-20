@@ -69,27 +69,13 @@ class MultiTrackAudioMixer {
         }
         
         do {
-            if !engine.isRunning { try engine.start() }
-            
-            for (i, player) in players.enumerated() {
-                player.stop()
-                player.scheduleFile(files[i], at: nil, completionHandler: nil)
-            }
-            
-            let leadSeconds = 0.1
-            let startHostTime = mach_absolute_time() + AVAudioTime.hostTime(forSeconds: leadSeconds)
-            let startTime = AVAudioTime(hostTime: startHostTime)
-            for player in players { player.play(at: startTime) }
-            
-            let durations = files.map { Double($0.length) / $0.processingFormat.sampleRate }
-            let maxDuration = durations.max() ?? 0.0
-            
-            DispatchQueue.global().asyncAfter(deadline: .now() + maxDuration + 0.5) {
-                mixerNode.removeTap(onBus: 0)
-                self.stop()
-                completion(true)
-            }
-            
+            let file = try AVAudioFile(forReading: outputURL)
+            let player = AVAudioPlayerNode()
+            self.engine.attach(player)
+            self.engine.connect(player, to: self.engine.mainMixerNode, format: file.processingFormat)
+            self.files.append(file)
+            self.players.append(player)
+            player.scheduleFile(file, at: nil, completionHandler: nil)
         } catch {
             completion(false)
         }
