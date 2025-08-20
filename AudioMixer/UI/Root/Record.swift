@@ -19,10 +19,8 @@ struct Record: View {
                 Text("All record")
                     .font(Font.largeTitle)
                     .fontWeight(Font.Weight.bold)
-                    .padding(10)
                 Spacer()
             }
-            .padding(.horizontal, 8)
             
             List {
                 ForEach(vm.recordings) {
@@ -60,6 +58,7 @@ struct Record: View {
             .padding(.bottom, 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(16)
         .background(.neutral01)
         .sheet(isPresented: $isPresentingRecorder) {
             RecordAudioView(vm: vm)
