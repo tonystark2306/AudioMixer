@@ -39,6 +39,7 @@ struct Record: View {
                     }
                 }
             }
+            .listStyle(.plain)
             Spacer()
             
             Button(action: {
