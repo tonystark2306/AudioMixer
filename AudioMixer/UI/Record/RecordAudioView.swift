@@ -19,7 +19,7 @@ struct RecordAudioView: View {
             ZStack {
                 Circle()
                     .font(.title)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.white)
                     .frame(width: 72, height: 72)
                 Rectangle()
                     .font(.title)
