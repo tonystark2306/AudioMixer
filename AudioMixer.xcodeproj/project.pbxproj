@@ -67,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C71B3322E55A87B0031AB26 /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				2CFBDFAC2E53162A0081A824 /* PlayMusic.swift */,
+			);
+			path = Play;
+			sourceTree = "<group>";
+		};
 		2C98B7B92E4DE88C004312F3 = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +99,7 @@
 				2C98B7D82E4DEB5F004312F3 /* App */,
 				2C98B7DB2E4DEB72004312F3 /* Resources */,
 				2C98B7D92E4DEB61004312F3 /* Model */,
-				2C98B7DA2E4DEB62004312F3 /* UI */,
+				2C98B7DA2E4DEB62004312F3 /* View */,
 				2CCE35882E55850400D5748D /* ViewModel */,
 			);
 			path = AudioMixer;
@@ -113,15 +121,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2C98B7DA2E4DEB62004312F3 /* UI */ = {
+		2C98B7DA2E4DEB62004312F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				2CFBDFC02E5330720081A824 /* Components */,
-				2CFBDFB02E531C340081A824 /* Record */,
 				2CFBDFA92E5315FF0081A824 /* Root */,
 				2CFBDFA72E5315F50081A824 /* Root.swift */,
 			);
-			path = UI;
+			path = View;
 			sourceTree = "<group>";
 		};
 		2C98B7DB2E4DEB72004312F3 /* Resources */ = {
@@ -142,6 +149,7 @@
 			children = (
 				2CCE357B2E5582AF00D5748D /* RecordSelectionView.swift */,
 				2CCE35872E55850400D5748D /* PlayMusicSelectionView.swift */,
+				2CFBDFAE2E53162B0081A824 /* Mixer.swift */,
 			);
 			path = Mixer;
 			sourceTree = "<group>";
@@ -159,9 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				2CCE357A2E5582A400D5748D /* Mixer */,
-				2CFBDFAA2E5316180081A824 /* Record.swift */,
-				2CFBDFAC2E53162A0081A824 /* PlayMusic.swift */,
-				2CFBDFAE2E53162B0081A824 /* Mixer.swift */,
+				2C71B3322E55A87B0031AB26 /* Play */,
+				2CFBDFB02E531C340081A824 /* Record */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -170,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2CFBDFB12E531C440081A824 /* RecordAudioView.swift */,
+				2CFBDFAA2E5316180081A824 /* Record.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
