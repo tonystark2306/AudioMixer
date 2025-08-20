@@ -9,6 +9,15 @@ import SwiftUI
 
 struct PlayMusic: View {
     @State private var showPlayer = false
+    @StateObject private var audioManager = AudioManager.shared
+    
+    let songs = [
+        ("aloha", "Aloha", "3:24"),
+        ("avengers", "Avengers", "4:15"),
+        ("demo", "Demo", "2:48"),
+        ("iloveu3000", "I Love You 3000", "3:05"),
+        ("portals", "Portals", "5:12")
+    ]
 
     var body: some View {
         VStack (spacing: 8) {
@@ -30,25 +39,16 @@ struct PlayMusic: View {
                 }
             }
             List {
-                AudioCell()
-                    .onTapGesture {
-                        showPlayer = true
-                    }
-                AudioCell()
-                    .onTapGesture {
-                        showPlayer = true
-                    }
-                AudioCell()
-                    .onTapGesture {
-                        showPlayer = true
-                    }
-                AudioCell()
-                    .onTapGesture {
-                        showPlayer = true
-                    }
+                ForEach(songs, id: \.0) { song in
+                    AudioCell(songName: song.0, displayName: song.1, duration: song.2)
+                        .onTapGesture {
+                            audioManager.loadAndPlay(songName: song.0)
+                            showPlayer = true
+                        }
+                }
             }
             .listStyle(.plain)
-            .padding(.horizontal, -8) // Remove side padding
+            .padding(.horizontal, -8)
             Spacer()
         }
         .sheet(isPresented: $showPlayer) {
@@ -56,8 +56,4 @@ struct PlayMusic: View {
                 .presentationDetents([.fraction(0.35)])
         }
     }
-}
-
-#Preview {
-    PlayMusic()
 }
