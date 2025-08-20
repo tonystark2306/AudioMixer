@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		13CA1FE45BCF4FDF8A2358F8 /* Pods_AudioMixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AB4BFE659EC8BD5B83BA6B /* Pods_AudioMixer.framework */; };
 		2C8549262E54706600CABF5E /* RecordAudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */; };
+		2C8D7BF42E54B4860046B8C4 /* avengers.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF02E54B4860046B8C4 /* avengers.mp3 */; };
+		2C8D7BF52E54B4860046B8C4 /* iloveu3000.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF22E54B4860046B8C4 /* iloveu3000.mp3 */; };
+		2C8D7BF62E54B4860046B8C4 /* aloha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BEF2E54B4860046B8C4 /* aloha.mp3 */; };
+		2C8D7BF72E54B4860046B8C4 /* demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF12E54B4860046B8C4 /* demo.mp3 */; };
+		2C8D7BF82E54B4860046B8C4 /* portals.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF32E54B4860046B8C4 /* portals.mp3 */; };
+		2C8D7BFA2E54B5B50046B8C4 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF92E54B5B50046B8C4 /* AudioManager.swift */; };
 		2C9699672E541804003D04BD /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9699662E541804003D04BD /* AudioFile.swift */; };
 		2C98B7D42E4DE8CE004312F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B7D02E4DE8CE004312F3 /* Assets.xcassets */; };
 		2C98B7D52E4DE8CE004312F3 /* AudioMixerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B7D12E4DE8CE004312F3 /* AudioMixerApp.swift */; };
@@ -26,6 +32,12 @@
 /* Begin PBXFileReference section */
 		1987AECC40824110576DC8A6 /* Pods-AudioMixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixer.debug.xcconfig"; path = "Target Support Files/Pods-AudioMixer/Pods-AudioMixer.debug.xcconfig"; sourceTree = "<group>"; };
 		2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAudioViewModel.swift; sourceTree = "<group>"; };
+		2C8D7BEF2E54B4860046B8C4 /* aloha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aloha.mp3; sourceTree = "<group>"; };
+		2C8D7BF02E54B4860046B8C4 /* avengers.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = avengers.mp3; sourceTree = "<group>"; };
+		2C8D7BF12E54B4860046B8C4 /* demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = demo.mp3; sourceTree = "<group>"; };
+		2C8D7BF22E54B4860046B8C4 /* iloveu3000.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = iloveu3000.mp3; sourceTree = "<group>"; };
+		2C8D7BF32E54B4860046B8C4 /* portals.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = portals.mp3; sourceTree = "<group>"; };
+		2C8D7BF92E54B5B50046B8C4 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2C9699662E541804003D04BD /* AudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioFile.swift; path = AudioMixer/AudioFile.swift; sourceTree = SOURCE_ROOT; };
 		2C98B7C22E4DE88C004312F3 /* AudioMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C98B7D02E4DE8CE004312F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +115,7 @@
 		2C98B7D92E4DEB61004312F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C8D7BF92E54B5B50046B8C4 /* AudioManager.swift */,
 				2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */,
 				2C9699662E541804003D04BD /* AudioFile.swift */,
 			);
@@ -124,6 +137,11 @@
 		2C98B7DB2E4DEB72004312F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C8D7BEF2E54B4860046B8C4 /* aloha.mp3 */,
+				2C8D7BF02E54B4860046B8C4 /* avengers.mp3 */,
+				2C8D7BF12E54B4860046B8C4 /* demo.mp3 */,
+				2C8D7BF22E54B4860046B8C4 /* iloveu3000.mp3 */,
+				2C8D7BF32E54B4860046B8C4 /* portals.mp3 */,
 				2C98B7D02E4DE8CE004312F3 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -252,6 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C98B7D42E4DE8CE004312F3 /* Assets.xcassets in Resources */,
+				2C8D7BF42E54B4860046B8C4 /* avengers.mp3 in Resources */,
+				2C8D7BF52E54B4860046B8C4 /* iloveu3000.mp3 in Resources */,
+				2C8D7BF62E54B4860046B8C4 /* aloha.mp3 in Resources */,
+				2C8D7BF72E54B4860046B8C4 /* demo.mp3 in Resources */,
+				2C8D7BF82E54B4860046B8C4 /* portals.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +343,7 @@
 				2CFBDFAB2E5316180081A824 /* Record.swift in Sources */,
 				2C8549262E54706600CABF5E /* RecordAudioViewModel.swift in Sources */,
 				2CFBDFA82E5315F50081A824 /* Root.swift in Sources */,
+				2C8D7BFA2E54B5B50046B8C4 /* AudioManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

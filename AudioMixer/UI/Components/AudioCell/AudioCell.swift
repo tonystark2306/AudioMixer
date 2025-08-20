@@ -8,29 +8,33 @@
 import SwiftUI
 
 struct AudioCell: View {
+    let songName: String
+    let displayName: String
+    let duration: String
+    
+    init(songName: String = "demo", displayName: String = "Tên file audio", duration: String = "0:54") {
+        self.songName = songName
+        self.displayName = displayName
+        self.duration = duration
+    }
+    
     var body: some View {
         VStack (spacing: 8) {
             HStack {
-                Text("Tên file audio")
+                Text(displayName)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.neutral07)
+                    .foregroundColor(.primary)
                 Spacer()
             }
             HStack {
-                // Thời gian ghi/Thời gian thêm bản nhạc
                 Text("15:00")
                     .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.grayPrimary)
+                    .foregroundColor(.secondary)
                 Spacer()
-                // Độ dài bản ghi
-                Text("0:54")
+                Text(duration)
                     .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.grayPrimary)
+                    .foregroundColor(.secondary)
             }
         }
     }
-}
-
-#Preview {
-    AudioCell()
 }

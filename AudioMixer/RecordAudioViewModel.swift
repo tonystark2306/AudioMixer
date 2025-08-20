@@ -48,7 +48,7 @@ class RecordAudioViewModel: NSObject, ObservableObject {
             try recordingSession.setActive(true, options: .notifyOthersOnDeactivation)
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "ddMMyyyy_HHmmss"
+            formatter.dateFormat = "ddMMyyyy_HHmm"
             let filename = formatter.string(from: Date()) + ".m4a"
             currentFile = filename
             
