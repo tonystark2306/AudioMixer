@@ -10,8 +10,10 @@ import AVFoundation
 
 struct Record: View {
     @State private var isPresentingRecorder = false
+    @State private var showPlayer = false
     @State private var player: AVAudioPlayer?
     @StateObject private var vm = RecordAudioViewModel()
+    @StateObject private var audioManager = AudioManager.shared
     
     var body: some View {
         VStack (spacing: 8) {
@@ -39,7 +41,6 @@ struct Record: View {
                     }
                 }
             }
-            .listStyle(.plain)
             Spacer()
             
             Button(action: {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13CA1FE45BCF4FDF8A2358F8 /* Pods_AudioMixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AB4BFE659EC8BD5B83BA6B /* Pods_AudioMixer.framework */; };
+		2C71B3342E55C51C0031AB26 /* MixerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C71B3332E55C5110031AB26 /* MixerViewModel.swift */; };
 		2C8549262E54706600CABF5E /* RecordAudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */; };
 		2C8D7BF42E54B4860046B8C4 /* avengers.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF02E54B4860046B8C4 /* avengers.mp3 */; };
 		2C8D7BF52E54B4860046B8C4 /* iloveu3000.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C8D7BF22E54B4860046B8C4 /* iloveu3000.mp3 */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1987AECC40824110576DC8A6 /* Pods-AudioMixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioMixer.debug.xcconfig"; path = "Target Support Files/Pods-AudioMixer/Pods-AudioMixer.debug.xcconfig"; sourceTree = "<group>"; };
+		2C71B3332E55C5110031AB26 /* MixerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewModel.swift; sourceTree = "<group>"; };
 		2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAudioViewModel.swift; sourceTree = "<group>"; };
 		2C8D7BEF2E54B4860046B8C4 /* aloha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aloha.mp3; sourceTree = "<group>"; };
 		2C8D7BF02E54B4860046B8C4 /* avengers.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = avengers.mp3; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		2CCE35882E55850400D5748D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2C71B3332E55C5110031AB26 /* MixerViewModel.swift */,
 				2CCE357D2E55830200D5748D /* PlayMusicViewModel.swift */,
 				2C8549252E54706600CABF5E /* RecordAudioViewModel.swift */,
 			);
@@ -357,6 +360,7 @@
 				2CFBDFAB2E5316180081A824 /* Record.swift in Sources */,
 				2C8549262E54706600CABF5E /* RecordAudioViewModel.swift in Sources */,
 				2CCE357E2E55830200D5748D /* PlayMusicViewModel.swift in Sources */,
+				2C71B3342E55C51C0031AB26 /* MixerViewModel.swift in Sources */,
 				2CCE357C2E5582AF00D5748D /* RecordSelectionView.swift in Sources */,
 				2CFBDFA82E5315F50081A824 /* Root.swift in Sources */,
 				2C8D7BFA2E54B5B50046B8C4 /* AudioManager.swift in Sources */,
