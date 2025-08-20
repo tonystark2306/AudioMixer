@@ -25,16 +25,16 @@ struct PlayerView: View {
                     Capsule()
                         .frame(height: 8)
                         .padding(.horizontal, 16)
-                        .foregroundColor(.gray.opacity(0.3))
+                        .foregroundColor(.neutral04)
                     
                     Capsule()
                         .frame(width: indicatorWidth(totalWidth: geometry.size.width - 32), height: 8)
                         .padding(.horizontal, 16)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.neutral02)
                     
                     Circle()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.neutral02)
                         .offset(x: knobOffset(totalWidth: geometry.size.width - 32) )
                         .gesture(
                             DragGesture(minimumDistance: 0)
@@ -94,12 +94,12 @@ struct PlayerView: View {
                 Text(formatTime(audioManager.currentTime))
                     .font(Font.caption)
                     .fontWeight(Font.Weight.semibold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.neutral06)
                 Spacer()
                 Text(formatTime(audioManager.duration))
                     .font(Font.caption)
                     .fontWeight(Font.Weight.semibold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.neutral06)
             }
             .padding(.horizontal, 16)
         }
@@ -125,4 +125,8 @@ struct PlayerView: View {
         let seconds = totalSeconds % 60
         return String(format: "%d:%02d", minutes, seconds)
     }
+}
+
+#Preview {
+    PlayerView()
 }

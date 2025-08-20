@@ -12,11 +12,11 @@ struct PlayMusic: View {
     @StateObject private var audioManager = AudioManager.shared
     
     let songs = [
-        ("aloha", "Aloha", "3:24"),
-        ("avengers", "Avengers", "4:15"),
-        ("demo", "Demo", "2:48"),
-        ("iloveu3000", "I Love You 3000", "3:05"),
-        ("portals", "Portals", "5:12")
+        ("aloha", "Aloha", "4:10"),
+        ("avengers", "Avengers", "2:03"),
+        ("demo", "Demo", "0:42"),
+        ("iloveu3000", "I Love You 3000", "3:29"),
+        ("portals", "Portals", "3:23")
     ]
 
     var body: some View {
