@@ -19,13 +19,13 @@ struct AudioCell: View {
     }
     
     var body: some View {
-        VStack (spacing: 8) {
+        VStack (alignment: .leading, spacing: 8) {
             HStack {
                 Text(displayName)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.primary)
-                Spacer()
             }
+            .frame(maxWidth: .infinity)
             HStack {
                 Text("15:00")
                     .font(.system(size: 14, weight: .regular))
@@ -36,5 +36,10 @@ struct AudioCell: View {
                     .foregroundColor(.secondary)
             }
         }
+        .frame(maxWidth: .infinity)
     }
+}
+
+#Preview {
+    AudioCell(songName: "demo", displayName: "Tên file audio", duration: "00:00")
 }

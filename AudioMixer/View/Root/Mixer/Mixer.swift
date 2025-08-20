@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 import AVFoundation
 import Combine
+import Playgrounds
 
 struct Mixer: View {
     @State private var isAddingTwoTrack: Bool = false
@@ -16,18 +17,6 @@ struct Mixer: View {
     @State private var showSelectSourceSheet: Bool = false
     @State private var selectedSource: SourceType? = nil
     @State private var addedAudios: [AddedAudio] = []
-
-    enum SourceType: Identifiable {
-        case record, playMusic
-        var id: Int { self.hashValue }
-    }
-    
-    struct AddedAudio: Identifiable, Equatable {
-        let id = UUID()
-        let fileURL: URL
-        let displayName: String
-        let source: SourceType
-    }
     
     var body: some View {
         VStack {
@@ -172,13 +161,6 @@ struct Mixer: View {
     }
 }
 
-
-struct MusicFile: Identifiable {
-    let id = UUID()
-    let fileURL: URL
-    let displayName: String
-    let duration: String
-}
 
 // MARK: - PlayMusicSelectionView
 

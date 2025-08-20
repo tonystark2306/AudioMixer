@@ -14,7 +14,6 @@ struct PlayMusic: View {
     @State private var showDocumentPicker = false
     @StateObject private var audioManager = AudioManager.shared
 
-    // Dynamic songs array, now supports user-added songs
     @State private var songs: [(String, String, String)] = [
         ("aloha", "Aloha", "4:10"),
         ("avengers", "Avengers", "2:03"),
@@ -62,14 +61,16 @@ struct PlayMusic: View {
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPicker { url in
                 if let url = url {
-                    addSong(from: url)
+                    Task {
+                        await addSong(from: url)
+                    }
                 }
             }
         }
     }
     
     // Helper: Add song from picked file
-    private func addSong(from url: URL) {
+    private func addSong(from url: URL) async {
         // 1. Copy file to Documents directory
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -77,7 +78,7 @@ struct PlayMusic: View {
         let fileName = url.lastPathComponent
         let destURL = documents.appendingPathComponent(fileName)
 
-        var songKey = destURL.deletingPathExtension().lastPathComponent
+        let songKey = destURL.deletingPathExtension().lastPathComponent
         if !fileManager.fileExists(atPath: destURL.path) {
             do {
                 try fileManager.copyItem(at: url, to: destURL)
@@ -89,16 +90,21 @@ struct PlayMusic: View {
         
         // 2. Extract duration
         let asset = AVURLAsset(url: destURL)
-        let durationSeconds = CMTimeGetSeconds(asset.duration)
-        let minutes = Int(durationSeconds) / 60
-        let seconds = Int(durationSeconds) % 60
-        let durationString = String(format: "%d:%02d", minutes, seconds)
-        
-        // 3. Use file name without extension as default title
-        let displayName = destURL.deletingPathExtension().lastPathComponent
-        
-        // 4. Add to song list
-        songs.append((songKey, displayName, durationString))
+        do {
+            let durationCMTime = try await asset.load(.duration)
+            let durationSeconds = CMTimeGetSeconds(durationCMTime)
+            let minutes = Int(durationSeconds) / 60
+            let seconds = Int(durationSeconds) % 60
+            let durationString = String(format: "%d:%02d", minutes, seconds)
+            
+            // 3. Use file name without extension as default title
+            let displayName = destURL.deletingPathExtension().lastPathComponent
+            
+            // 4. Add to song list
+            songs.append((songKey, displayName, durationString))
+        } catch {
+            print("Failed to load duration: \(error)")
+        }
     }
 }
 
@@ -136,3 +142,4 @@ struct DocumentPicker: UIViewControllerRepresentable {
         }
     }
 }
+
