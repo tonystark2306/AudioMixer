@@ -9,19 +9,20 @@ import SwiftUI
 import UniformTypeIdentifiers
 import AVFoundation
 
+let bundledSongs: [(String, String, String)] = [
+    ("aloha", "Aloha", "4:10"),
+    ("avengers", "Avengers", "2:03"),
+    ("demo", "Demo", "0:42"),
+    ("iloveu3000", "I Love You 3000", "3:29"),
+    ("portals", "Portals", "3:23")
+]
+
 struct PlayMusic: View {
     @State private var showPlayer = false
     @State private var showDocumentPicker = false
     @StateObject private var audioManager = AudioManager.shared
 
-    // Dynamic songs array, now supports user-added songs
-    @State private var songs: [(String, String, String)] = [
-        ("aloha", "Aloha", "4:10"),
-        ("avengers", "Avengers", "2:03"),
-        ("demo", "Demo", "0:42"),
-        ("iloveu3000", "I Love You 3000", "3:29"),
-        ("portals", "Portals", "3:23")
-    ]
+    @State var songs: [(String, String, String)] = bundledSongs
     
     var body: some View {
         VStack {
@@ -68,9 +69,7 @@ struct PlayMusic: View {
         }
     }
     
-    // Helper: Add song from picked file
     private func addSong(from url: URL) {
-        // 1. Copy file to Documents directory
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         
@@ -87,22 +86,18 @@ struct PlayMusic: View {
             }
         }
         
-        // 2. Extract duration
         let asset = AVURLAsset(url: destURL)
         let durationSeconds = CMTimeGetSeconds(asset.duration)
         let minutes = Int(durationSeconds) / 60
         let seconds = Int(durationSeconds) % 60
         let durationString = String(format: "%d:%02d", minutes, seconds)
         
-        // 3. Use file name without extension as default title
         let displayName = destURL.deletingPathExtension().lastPathComponent
         
-        // 4. Add to song list
         songs.append((songKey, displayName, durationString))
     }
 }
 
-// MARK: - Document Picker SwiftUI Wrapper
 
 struct DocumentPicker: UIViewControllerRepresentable {
     var completion: (URL?) -> Void
