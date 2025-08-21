@@ -1,14 +1,6 @@
-//
-//  Mixer.swift
-//  AudioMixer
-//
-//  Created by EF2025 on 18/8/25.
-//
-
 import SwiftUI
 import Foundation
 import AVFoundation
-import Combine
 
 struct Mixer: View {
     @State private var isAddingTwoTrack: Bool = false
@@ -16,6 +8,7 @@ struct Mixer: View {
     @State private var showSelectSourceSheet: Bool = false
     @State private var selectedSource: SourceType? = nil
     @State private var addedAudios: [AddedAudio] = []
+    @StateObject private var mixingViewModel = MixingViewModel()
 
     enum SourceType: Identifiable {
         case record, playMusic
@@ -49,7 +42,6 @@ struct Mixer: View {
             
             Spacer()
             
-            // Hiển thị danh sách các file đã thêm
             if !addedAudios.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     ForEach(addedAudios) { audio in
@@ -60,7 +52,6 @@ struct Mixer: View {
                                 .lineLimit(1)
                             Spacer()
                             Button(action: {
-                                // Xóa file khỏi danh sách
                                 if let idx = addedAudios.firstIndex(of: audio) {
                                     addedAudios.remove(at: idx)
                                     currentNumberAudio = addedAudios.count
@@ -84,7 +75,8 @@ struct Mixer: View {
             
             if isAddingTwoTrack {
                 Button(action: {
-                    // TODO: Thực hiện mix các file trong addedAudios
+                    let audioURLs = addedAudios.map { $0.fileURL }
+                    mixingViewModel.mixAudio(audioFiles: audioURLs)
                 }) {
                     Text("Mix now")
                         .font(Font.title2)
@@ -147,9 +139,7 @@ struct Mixer: View {
         .sheet(item: $selectedSource) { source in
             if source == .record {
                 RecordSelectionView { url in
-                    // Lấy tên file từ url
                     let name = url.lastPathComponent
-                    // Tránh duplicate
                     if !addedAudios.contains(where: { $0.fileURL == url }) {
                         addedAudios.append(AddedAudio(fileURL: url, displayName: name, source: .record))
                         currentNumberAudio = addedAudios.count
@@ -172,7 +162,6 @@ struct Mixer: View {
     }
 }
 
-
 struct MusicFile: Identifiable {
     let id = UUID()
     let fileURL: URL
@@ -180,10 +169,6 @@ struct MusicFile: Identifiable {
     let duration: String
 }
 
-// MARK: - PlayMusicSelectionView
-
-
 #Preview {
     Root()
 }
-
