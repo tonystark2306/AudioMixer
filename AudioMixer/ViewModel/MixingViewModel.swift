@@ -1,21 +1,16 @@
-//
-//  MixingViewModel.swift
-//  AudioMixer
-//
-//  Created by iKame Elite Fresher 2025 on 8/20/25.
-//
-
 import Foundation
 import AVFoundation
 import Combine
 
 class MixingViewModel: ObservableObject {
+    @Published var isPlaying = false
     private var audioEngine = AVAudioEngine()
     private var playerNodes: [AVAudioPlayerNode] = []
     
     init() {
         setupAudioSession()
     }
+    
     private func setupAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.defaultToSpeaker])
@@ -53,6 +48,10 @@ class MixingViewModel: ObservableObject {
                 playerNode.play()
             }
             
+            DispatchQueue.main.async {
+                self.isPlaying = true
+            }
+            
         } catch {
             print("failed: \(error)")
         }
@@ -65,5 +64,16 @@ class MixingViewModel: ObservableObject {
         }
         audioEngine = AVAudioEngine()
         playerNodes.removeAll()
+        isPlaying = false
+    }
+    
+    func stopAudio() {
+        playerNodes.forEach { $0.stop() }
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
+        DispatchQueue.main.async {
+            self.isPlaying = false
+        }
     }
 }

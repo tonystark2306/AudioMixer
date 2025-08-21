@@ -17,8 +17,7 @@ class PlayMusicViewModel: ObservableObject {
         musicFiles.removeAll()
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-
-        // Find all mp3 files in Documents directory
+        let seenFiles: Set<String> = []
         let files = (try? fileManager.contentsOfDirectory(at: documents, includingPropertiesForKeys: nil)) ?? []
         for file in files where file.pathExtension.lowercased() == "mp3" {
             let asset = AVURLAsset(url: file)
@@ -29,16 +28,12 @@ class PlayMusicViewModel: ObservableObject {
             let displayName = file.deletingPathExtension().lastPathComponent
             musicFiles.append(MusicFile(fileURL: file, displayName: displayName, duration: durationString))
         }
-        // For demo: add a bundled "demo" if present
-        if let demoURL = Bundle.main.url(forResource: "demo", withExtension: "mp3") {
-            let asset = AVURLAsset(url: demoURL)
-            let durationSeconds = CMTimeGetSeconds(asset.duration)
-            let minutes = Int(durationSeconds) / 60
-            let seconds = Int(durationSeconds) % 60
-            let durationString = String(format: "%d:%02d", minutes, seconds)
-            musicFiles.append(MusicFile(fileURL: demoURL, displayName: "Demo", duration: durationString))
+        for (fileName, displayName, durationString) in bundledSongs {
+            if seenFiles.contains(fileName.lowercased()) { continue } 
+            if let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") {
+                musicFiles.append(MusicFile(fileURL: url, displayName: displayName, duration: durationString))
+            }
         }
-        // Sort by displayName
         musicFiles.sort { $0.displayName < $1.displayName }
     }
 }
