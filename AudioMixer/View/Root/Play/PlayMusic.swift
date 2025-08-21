@@ -13,7 +13,7 @@ struct PlayMusic: View {
     @State private var showPlayer = false
     @State private var showDocumentPicker = false
     @StateObject private var audioManager = AudioManager.shared
-
+    
     // Dynamic songs array, now supports user-added songs
     @State private var songs: [(String, String, String)] = [
         ("aloha", "Aloha", "4:10"),
@@ -62,22 +62,24 @@ struct PlayMusic: View {
         .sheet(isPresented: $showDocumentPicker) {
             DocumentPicker { url in
                 if let url = url {
-                    addSong(from: url)
+                    Task {
+                        await addSong(from: url)
+                    }
                 }
             }
         }
     }
     
     // Helper: Add song from picked file
-    private func addSong(from url: URL) {
+    private func addSong(from url: URL) async  {
         // 1. Copy file to Documents directory
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         let fileName = url.lastPathComponent
         let destURL = documents.appendingPathComponent(fileName)
-
-        var songKey = destURL.deletingPathExtension().lastPathComponent
+        
+        let songKey = destURL.deletingPathExtension().lastPathComponent
         if !fileManager.fileExists(atPath: destURL.path) {
             do {
                 try fileManager.copyItem(at: url, to: destURL)
@@ -89,16 +91,18 @@ struct PlayMusic: View {
         
         // 2. Extract duration
         let asset = AVURLAsset(url: destURL)
-        let durationSeconds = CMTimeGetSeconds(asset.duration)
-        let minutes = Int(durationSeconds) / 60
-        let seconds = Int(durationSeconds) % 60
-        let durationString = String(format: "%d:%02d", minutes, seconds)
-        
-        // 3. Use file name without extension as default title
-        let displayName = destURL.deletingPathExtension().lastPathComponent
-        
-        // 4. Add to song list
-        songs.append((songKey, displayName, durationString))
+        do {
+            let duration: CMTime = try await asset.load(.duration)
+            let durationSeconds = CMTimeGetSeconds(duration)
+            let minutes = Int(durationSeconds) / 60
+            let seconds = Int(durationSeconds) % 60
+            let durationString = String(format: "%d:%02d", minutes, seconds)
+            let displayName = destURL.deletingPathExtension().lastPathComponent
+            songs.append((songKey, displayName, durationString))
+        }
+        catch {
+            print("\(error)")}
+                
     }
 }
 
@@ -122,15 +126,15 @@ struct DocumentPicker: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         let completion: (URL?) -> Void
-
+        
         init(completion: @escaping (URL?) -> Void) {
             self.completion = completion
         }
-
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             completion(urls.first)
         }
-
+        
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
             completion(nil)
         }

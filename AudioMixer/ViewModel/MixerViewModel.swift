@@ -25,7 +25,7 @@ class MixerViewModel: ObservableObject {
         do {
             try configureAudioSession()
         } catch {
-            print("Failed to create audio session: \(error)")
+            print("Error when create audio session: \(error)")
         }
     }
     
@@ -40,7 +40,7 @@ class MixerViewModel: ObservableObject {
                 players.append(player)
                 player.scheduleFile(file, at: nil, completionHandler: nil)
             } catch {
-                print("Error loading URL: \(error)")
+                print("Error loading: \(error)")
                 return false
             }
         }
@@ -56,7 +56,9 @@ class MixerViewModel: ObservableObject {
         }
     }
     
-    func pause() { players.forEach { $0.pause() } }
+    func pause() {
+        players.forEach { $0.pause() }
+    }
     
     func stop() {
         players.forEach { $0.stop() }
