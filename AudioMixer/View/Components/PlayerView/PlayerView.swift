@@ -41,7 +41,7 @@ struct PlayerView: View {
                                 .onChanged { value in
                                     let x = max(0, min(value.location.x - 16, geometry.size.width - 32))
                                     let progress = CGFloat(x / (geometry.size.width - 32))
-                                    let newTime = Double(progress) * audioManager.duration
+                                    _ = Double(progress) * audioManager.duration
                                     isDragging = true
                                 }
                                 .onEnded { value in

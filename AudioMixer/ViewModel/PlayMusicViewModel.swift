@@ -13,7 +13,7 @@ import Combine
 class PlayMusicViewModel: ObservableObject {
     @Published var musicFiles: [MusicFile] = []
 
-    func fetchMusicFiles() {
+    func fetchMusicFiles() async {
         musicFiles.removeAll()
         let fileManager = FileManager.default
         let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -22,21 +22,32 @@ class PlayMusicViewModel: ObservableObject {
         let files = (try? fileManager.contentsOfDirectory(at: documents, includingPropertiesForKeys: nil)) ?? []
         for file in files where file.pathExtension.lowercased() == "mp3" {
             let asset = AVURLAsset(url: file)
-            let durationSeconds = CMTimeGetSeconds(asset.duration)
-            let minutes = Int(durationSeconds) / 60
-            let seconds = Int(durationSeconds) % 60
-            let durationString = String(format: "%d:%02d", minutes, seconds)
-            let displayName = file.deletingPathExtension().lastPathComponent
-            musicFiles.append(MusicFile(fileURL: file, displayName: displayName, duration: durationString))
+            do {
+                let durationCMTime = try await asset.load(.duration)
+                let durationSeconds = CMTimeGetSeconds(durationCMTime)
+                let minutes = Int(durationSeconds) / 60
+                let seconds = Int(durationSeconds) % 60
+                let durationString = String(format: "%d:%02d", minutes, seconds)
+                let displayName = file.deletingPathExtension().lastPathComponent
+                musicFiles.append(MusicFile(fileURL: file, displayName: displayName, duration: durationString))
+            } catch {
+                // If duration can't be loaded, skip this file
+                continue
+            }
         }
         // For demo: add a bundled "demo" if present
         if let demoURL = Bundle.main.url(forResource: "demo", withExtension: "mp3") {
             let asset = AVURLAsset(url: demoURL)
-            let durationSeconds = CMTimeGetSeconds(asset.duration)
-            let minutes = Int(durationSeconds) / 60
-            let seconds = Int(durationSeconds) % 60
-            let durationString = String(format: "%d:%02d", minutes, seconds)
-            musicFiles.append(MusicFile(fileURL: demoURL, displayName: "Demo", duration: durationString))
+            do {
+                let durationCMTime = try await asset.load(.duration)
+                let durationSeconds = CMTimeGetSeconds(durationCMTime)
+                let minutes = Int(durationSeconds) / 60
+                let seconds = Int(durationSeconds) % 60
+                let durationString = String(format: "%d:%02d", minutes, seconds)
+                musicFiles.append(MusicFile(fileURL: demoURL, displayName: "Demo", duration: durationString))
+            } catch {
+                // Ignore if bundled demo fails to load
+            }
         }
         // Sort by displayName
         musicFiles.sort { $0.displayName < $1.displayName }
