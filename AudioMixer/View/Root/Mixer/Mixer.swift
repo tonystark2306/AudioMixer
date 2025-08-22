@@ -81,7 +81,7 @@ struct Mixer: View {
                 }
                 .padding(.vertical, 8)
             } else {
-                Text("")
+                Text("Please tap + button to add audio")
             }
             Spacer()
             
