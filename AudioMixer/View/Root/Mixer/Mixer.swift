@@ -290,7 +290,3 @@ struct MusicFile: Identifiable {
     let displayName: String
     let duration: String
 }
-
-#Preview {
-    Root()
-}

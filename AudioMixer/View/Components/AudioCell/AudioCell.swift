@@ -36,5 +36,7 @@ struct AudioCell: View {
                     .foregroundColor(.secondary)
             }
         }
+        .background(Color.clear) 
+        .contentShape(Rectangle())
     }
 }

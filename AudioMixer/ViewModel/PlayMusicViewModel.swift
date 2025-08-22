@@ -29,11 +29,12 @@ class PlayMusicViewModel: ObservableObject {
             musicFiles.append(MusicFile(fileURL: file, displayName: displayName, duration: durationString))
         }
         for (fileName, displayName, durationString) in bundledSongs {
-            if seenFiles.contains(fileName.lowercased()) { continue } 
+            if seenFiles.contains(fileName.lowercased()) { continue } // skip if already in Documents
             if let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") {
                 musicFiles.append(MusicFile(fileURL: url, displayName: displayName, duration: durationString))
             }
         }
+        // Sort by displayName
         musicFiles.sort { $0.displayName < $1.displayName }
     }
 }
