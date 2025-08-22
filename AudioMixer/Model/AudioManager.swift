@@ -59,6 +59,7 @@ class AudioManager: ObservableObject {
             }
             
             let format = audioFile.processingFormat
+            
             audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: format)
             
             currentSong = songName
